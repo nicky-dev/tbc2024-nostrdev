@@ -1,0 +1,11 @@
+services:
+  relay:
+    ports:
+      - 80:8080
+    image: scsibug/nostr-rs-relay:stable
+    volumes:
+      - ./config.toml:/usr/src/app/config.toml
+      - data:/usr/src/app/db
+
+volumes:
+  data:
