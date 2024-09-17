@@ -18,17 +18,7 @@ const ndk = new NDK({
 await ndk.connect();
 
 
-// 3. Initial signer
-const signer = new NDKPrivateKeySigner(skHex);
-
-// 4. Publish event
-const ev = new NDKEvent(ndk);
-ev.content = "CONTENT_1234";
-ev.kind = 1;
-await ev.sign(signer);
-await ev.publish();
-
-// 5. Fetch events
+// 3. Fetch events
 const events = await ndk.fetchEvents({
   kinds: [1],
 });
@@ -36,3 +26,13 @@ console.log(
   "events",
   await Promise.all([...events].map((e) => e.toNostrEvent()))
 );
+
+// 4. Initial signer
+const signer = new NDKPrivateKeySigner(skHex);
+
+// 5. Publish event
+const ev = new NDKEvent(ndk);
+ev.content = "CONTENT 1234";
+ev.kind = 1;
+await ev.sign(signer);
+await ev.publish();
