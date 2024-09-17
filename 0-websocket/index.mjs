@@ -3,7 +3,9 @@ const relayUrl = "wss://relay.damus.io";
 const connection = new WebSocket(relayUrl);
 
 connection.onopen = () => {
-  connection.send(JSON.stringify(["REQ", "1234", { kinds: [1], limit: 1 }]));
+  connection.send(
+    JSON.stringify(["REQ", "1234", { kinds: [1], limit: 1, "#t": ["siamstr"] }])
+  );
 };
 
 connection.onerror = (error) => {
